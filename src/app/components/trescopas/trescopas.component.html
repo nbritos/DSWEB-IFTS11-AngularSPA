@@ -1,0 +1,76 @@
+<body>
+    <h1 class="titulo">{{titulo}} <img
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20210704%2Foriginal%2Fpngtree-3-golden-3d-realistic-stars-png-image_6506672.jpg&f=1&nofb=1&ipt=b4565b30fe86f7c68f3ccf8d14b6ecc6fc3de5351e4cb5b803320113665253ad&ipo=images"
+            alt="Texto_descriptivo" align="center" width="100" height="100" border="1"> </h1>
+    <BR>
+
+
+    <dt><strong><u>Copa del mundo en 3D </u></strong></dt>
+    <p>Descarga la copa del fin del mundo en formato "STL" <a
+            href="https://cults3d.com/en/3d-model/art/fifa-world-cup-in-parts-copa-del-mundo-fifa-en-partes"
+            target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
+
+    <dt><strong><u>Fixture completo</u></strong></dt><BR>
+
+    <a
+        href="javascript:window.open('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.blpmCvM1Jya2nkARUMoR1QHaFj%26pid%3DApi&f=1&ipt=d58f9e4a0b242890e6851500fb9a390b02608701ac10758a5189bbe0476a6d2b&ipo=images','','toolbar=yes');void 0">Descargar
+        Fixture completo</a>
+
+    <div>
+        <p>
+
+        </p>
+    </div>
+
+
+
+
+    <hr>
+    <hr>
+    <hr>
+    <br>
+    <br>
+
+    <table class="tblprovincias">
+        <thead>
+            <tr>
+                <th class="thtitulos">Provincia</th>
+                <th class="thtitulos">Capital</th>
+                <th class="thtitulos">Sitios de interés</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="provincias.length>0;else fila">
+
+            <ng-container *ngFor="let provincia of provincias">
+                <tr>
+                    <td>{{provincia.nombre}}</td>
+                    <td><strong>{{provincia.capital}}</strong></td>
+                    <td>
+                        <p> {{provincia.sInteres}}</p>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+        <ng-template #fila>
+            <tbody>
+                <td colspan="4">El país quedó vacío</td>
+            </tbody>
+        </ng-template>
+
+    </table>
+    <br>
+    <br>
+
+    <button type="button" class="btn btn-danger" (click)="eliminarUltimaProvincia()">Borrar provincia</button>
+
+    <br>
+    <br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/mgcmuFk6XlY" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+</body>
+
+
+
+<router-outlet></router-outlet>
