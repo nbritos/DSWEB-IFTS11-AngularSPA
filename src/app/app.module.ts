@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { TrescopasComponent } from './components/trescopas/trescopas.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { ProvinciaService } from './services/provincia.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { NavigationComponent } from './components/navigation/navigation.componen
       ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ProvinciaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

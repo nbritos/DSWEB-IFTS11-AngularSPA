@@ -21,13 +21,7 @@
 
         </p>
     </div>
-
-
-
-
-    <hr>
-    <hr>
-    <hr>
+    
     <br>
     <br>
 
@@ -59,16 +53,38 @@
 
     </table>
     <br>
+
+    <button type="button" class="btn btn-danger" (click)="provinciaService.eliminarUltimaProvincia()">Borrar
+        provincia</button>
+
+    <br>
+    <br>
+    <!-- <form #formProvincia (ngSubmit)="onSubmit()">
+        <div class="form-row" >
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="provincia.nombre" >
+            </div>
+            <div class="col">
+                <input type="text" class="form-control"  placeholder="Capital" [(ngModel)]="provincia.capital">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Sitios de interés" [(ngModel)]="provincia.sInteres">
+            </div>
+                <button type="button" class="btn btn-success">Agregar
+                    provincia</button>
+        </div>
+    </form> -->
     <br>
 
-    <button type="button" class="btn btn-danger" (click)="eliminarUltimaProvincia()">Borrar provincia</button>
+    <br>
 
-    <br>
-    <br>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/mgcmuFk6XlY" title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
+        allowfullscreen>
+    </iframe>
+
+
 </body>
 
 
