@@ -26,7 +26,7 @@ export class ProvinciaService {
   }, {
     "nombre": "Formosa",
     "capital": "Formosa",
-    "sInteres": "Gildo Insfrán"
+    "sInteres": "Dulce de caña"
   }, {
     "nombre": "Chubut",
     "capital": "Rawson",
@@ -63,9 +63,8 @@ export class ProvinciaService {
   }
 
 
-  agregarProvincia(provincia:IProvincia): void {
-    const provinciaPush:IProvincia={...provincia}
-    this.provincias.push(provincia);
+  agregarProvincia(provincias:IProvincia[]): void {
+    this.provincias=provincias;
   }
 
   listarProvincias(){

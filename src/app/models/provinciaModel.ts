@@ -1,5 +1,5 @@
 export interface IProvincia{
-    nombre:string,
-    capital:string,
-    sInteres:string
+    nombre?:string,
+    capital?:string,
+    sInteres?:string
 };
