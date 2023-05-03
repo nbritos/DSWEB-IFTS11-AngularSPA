@@ -63,8 +63,8 @@ export class ProvinciaService {
   }
 
 
-  agregarProvincia(provincias:IProvincia[]): void {
-    this.provincias=provincias;
+  agregarProvincia(provincia:IProvincia): void {
+    this.provincias.push(provincia);
   }
 
   listarProvincias(){

@@ -26,12 +26,14 @@
             <legend>Sitios de interés</legend>
             <table border="2">
                 <thead>
+                    <th>ID</th>
                     <th>Provincia</th>
                     <th>Capital</th>
                     <th>Sitios de interés</th>
                 </thead>
                 <tbody *ngIf="provincias.length>0;else fila">
-                    <tr *ngFor=" let provincia of provincias">
+                    <tr *ngFor=" let provincia of provincias;index as i">
+                        <td>{{i}}</td>
                         <td>{{provincia.nombre}}</td>
                         <td>{{provincia.capital}}</td>
                         <td>{{provincia.sInteres}}</td>
@@ -53,35 +55,27 @@
     <br>
     <br>
 
-    <form class="row">
+    <form (ngSubmit)="agregarProvincia()" type="post">
         <div class="form-row">
             <div class="col">
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre"
-                    [(ngModel)]="provinciaNueva.nombre" (focus)="limpiarNombre()">
+                <input type="text" [(ngModel)]="provinciaNueva.nombre" name="nombre" class="form-control mb-2"
+                    placeholder="Nombre">
             </div>
             <div class="col">
-                <input type="text" class="form-control" name="capital" placeholder="Capital"
-                    [(ngModel)]="provinciaNueva.capital" (focus)="limpiarCapital()">
+                <input type="text" [(ngModel)]="provinciaNueva.capital" name="capital" class="form-control mb-2"
+                    placeholder="Capital">
             </div>
             <div class="col">
-                <input type="text" class="form-control" name="sInteres" placeholder="Sitios de interés"
-                    [(ngModel)]="provinciaNueva.sInteres" (focus)="limpiarSInteres()">
+                <input type="text" [(ngModel)]="provinciaNueva.sInteres" name="sInteres" class="form-control"
+                    name="sInteres" placeholder="Sitios de interés">
             </div>
-            <button type="button" class="btn btn-success" (click)="agregarProvincia()">Agregar
-                provincia</button>
+            <button class="btn btn-success">
+                Agregar provincia</button>
         </div>
     </form>
 
-    <div class="form-row">
-        <div class="col">
-            {{provinciaNueva.nombre}}
-        </div>
-        <div class="col">
-            {{provinciaNueva.capital}}
-        </div>
-        <div class="col">
-            {{provinciaNueva.sInteres}}
-        </div>
+    <div class="provinciaJson">
+        {{provinciaNueva | json}}
     </div>
 
     <br>

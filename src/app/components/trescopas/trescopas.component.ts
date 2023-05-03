@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { IProvincia } from 'src/app/models/provinciaModel';
 import { ProvinciaService } from 'src/app/services/provincia.service';
+
 
 
 @Component({
@@ -14,7 +16,14 @@ export class TrescopasComponent {
   titulo: string = "tresCopas";
   provincias: IProvincia[] = []
 
-  provinciaNueva: IProvincia = {}
+  nombre: string = '';
+  capital: string = '';
+  interes: string = '';
+
+
+
+  provinciaNueva: IProvincia = {};
+
 
   constructor(private provinciaService: ProvinciaService) {
     this.provincias = provinciaService.listarProvincias();
@@ -25,28 +34,16 @@ export class TrescopasComponent {
     this.provinciaService.eliminarUltimaProvincia();
   }
 
+  // emitirProvincia(): void {
+  //   this.provinciaPush.nombre=this.provinciaNueva.nombre;
+  //   this.provinciaPush.capital=this.provinciaNueva.capital;
+  //   this.provinciaPush.sInteres=this.provinciaNueva.sInteres;
+  // }
+
   agregarProvincia(): void {
-    this.provincias.push(this.provinciaNueva);
+    this.provinciaService.agregarProvincia(this.provinciaNueva);
     console.log(this.provincias);
-    this.provinciaService.agregarProvincia(this.provincias);
+    this.provinciaNueva={};
   }
 
-
-  limpiarProvincia(): void {
-    this.provinciaNueva.nombre = '',
-      this.provinciaNueva.capital = '';
-    this.provinciaNueva.sInteres = '';
-  }
-
-  limpiarNombre(): void {
-    this.provinciaNueva.nombre = '';
-  }
-
-  limpiarCapital(): void {
-    this.provinciaNueva.capital = '';
-  }
-
-  limpiarSInteres(): void {
-    this.provinciaNueva.sInteres = '';
-  }
 }
