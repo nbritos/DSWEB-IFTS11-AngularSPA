@@ -20,10 +20,7 @@ export class TrescopasComponent {
   capital: string = '';
   interes: string = '';
 
-
-
   provinciaNueva: IProvincia = {};
-
 
   constructor(private provinciaService: ProvinciaService) {
     this.provincias = provinciaService.listarProvincias();
@@ -34,15 +31,9 @@ export class TrescopasComponent {
     this.provinciaService.eliminarUltimaProvincia();
   }
 
-  // emitirProvincia(): void {
-  //   this.provinciaPush.nombre=this.provinciaNueva.nombre;
-  //   this.provinciaPush.capital=this.provinciaNueva.capital;
-  //   this.provinciaPush.sInteres=this.provinciaNueva.sInteres;
-  // }
-
   agregarProvincia(): void {
     this.provinciaService.agregarProvincia(this.provinciaNueva);
-    console.log(this.provincias);
+    console.log(this.provinciaService.provincias);
     this.provinciaNueva={};
   }
 

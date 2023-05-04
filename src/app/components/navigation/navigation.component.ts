@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ProvinciaService } from 'src/app/services/provincia.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class NavigationComponent {
 
+  constructor(private provinciaService:ProvinciaService, private router:Router){
+  }
+  
+  logOut(){
+    this.provinciaService.logOut();
+    console.log("cerrando sesión!!");
+    this.router.navigate(['smb']);
+  }
+  
 }

@@ -70,4 +70,17 @@ export class ProvinciaService {
   listarProvincias(){
     return this.provincias;
   }
+
+  setToken(){
+    localStorage.setItem('token','LogInOK');
+  }
+
+  isLoggedIn():boolean{
+    return !!localStorage.getItem('token');
+  }
+
+  logOut(){
+    localStorage.removeItem('token');
+  }
+
 }
