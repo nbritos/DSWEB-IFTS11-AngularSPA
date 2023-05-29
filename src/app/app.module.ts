@@ -18,7 +18,7 @@ import { SmbComponent } from './components/smb/smb.component';
     TrescopasComponent,
     HomeComponent,
     NavigationComponent,
-    SmbComponent,
+    SmbComponent
       ],
   imports: [
     BrowserModule,

@@ -6,80 +6,92 @@ import { IProvincia } from '../models/provinciaModel';
 })
 export class ProvinciaService {
 
-  constructor() { }
+  API_URI = 'http://localhost:3000/provincias';
+
+  provincias: IProvincia[];
 
 
-  public provincia:IProvincia={
-    nombre:'',
-    capital:'',
-    sInteres:''
+  constructor() {
+    this.provincias = [{
+      "id": 1,
+      "nombre": "BuenosAires",
+      "capital": "La Plata",
+      "sInteres": "V Museo interactivo de la plata con imagenes holograficas de los jugadores."
+    }, {
+      "id": 2,
+      "nombre": "Chaco",
+      "capital": "Resistencia",
+      "sInteres": " Predio internacional Herederos del mate, donde se puede realizar torneos con las camisetas de los equipos del mundial. "
+    }, {
+      "id": 3,
+      "nombre": "Formosa",
+      "capital": "Formosa",
+      "sInteres": "Dulce de caña"
+    }, {
+      "id": 4,
+      "nombre": "Chubut",
+      "capital": "Rawson",
+      "sInteres": "Pingüinos"
+    }, {
+      "id": 5,
+      "nombre": "Entre Ríos",
+      "capital": "Paraná",
+      "sInteres": "Fito Páez"
+    }, {
+      "id": 6,
+      "nombre": "Misiones",
+      "capital": "Posadas",
+      "sInteres": "Cataratas del Iguazú"
+    }, {
+      "id": 7,
+      "nombre": "La Pampa",
+      "capital": "Santa Rosa",
+      "sInteres": "Vaquitas"
+    }, {
+      "id": 8,
+      "nombre": "Salta",
+      "capital": "Salta",
+      "sInteres": "Plaza 9 de Julio, Iglesa de San Francisco, Virgen de los tres cerritos"
+    }, {
+      "id": 9,
+      "nombre": "San Luis",
+      "capital": "San Luis",
+      "sInteres": "Sierras de Merlo"
+    }, {
+      "id": 10,
+      "nombre": "Jujuy",
+      "capital": "San Salvador de Jujuy",
+      "sInteres": "Pucará de Tilcara"
+    }
+    ]
   }
 
-  provincias: IProvincia[] = [{
-    "nombre": "BuenosAires",
-    "capital": "La Plata",
-    "sInteres": "V Museo interactivo de la plata con imagenes holograficas de los jugadores."
-  }, {
-    "nombre": "Chaco",
-    "capital": "Resistencia",
-    "sInteres": " Predio internacional Herederos del mate, donde se puede realizar torneos con las camisetas de los equipos del mundial. "
-  }, {
-    "nombre": "Formosa",
-    "capital": "Formosa",
-    "sInteres": "Dulce de caña"
-  }, {
-    "nombre": "Chubut",
-    "capital": "Rawson",
-    "sInteres": "Pingüinos"
-  }, {
-    "nombre": "Entre Ríos",
-    "capital": "Paraná",
-    "sInteres": "Fito Páez"
-  }, {
-    "nombre": "Misiones",
-    "capital": "Posadas",
-    "sInteres": "Cataratas del Iguazú"
-  }, {
-    "nombre": "La Pampa",
-    "capital": "Santa Rosa",
-    "sInteres": "Vaquitas"
-  }, {
-    "nombre": "Salta",
-    "capital": "Salta",
-    "sInteres": "Plaza 9 de Julio, Iglesa de San Francisco, Virgen de los tres cerritos"
-  }, {
-    "nombre": "San Luis",
-    "capital": "San Luis",
-    "sInteres": "Sierras de Merlo"
-  }, {
-    "nombre": "Jujuy",
-    "capital": "San Salvador de Jujuy",
-    "sInteres": "Pucará de Tilcara"
-  }
-  ]
-
-  eliminarUltimaProvincia(): void {
-    this.provincias.pop();
-  }
 
 
-  agregarProvincia(provincia:IProvincia): void {
-    this.provincias.push(provincia);
-  }
 
-  listarProvincias(){
+  listarProvincias() {
     return this.provincias;
   }
 
-  setToken(){
-    localStorage.setItem('token','LogInOK');
+  guardarProvincias(provinciasGuardar: IProvincia[]) {
+    //Recibe un array de provincias y lo guarda. Sobreescribe el contenido previo.
+    this.provincias = provinciasGuardar;
   }
 
-  isLoggedIn():boolean{
+  guardarProvinciasLocal() {
+    //Guarda los usuarios del objeto en el LocalStorage
+    localStorage.setItem("Provincias", JSON.stringify(this.provincias));
+  }
+
+  setToken() {
+    localStorage.setItem('token', 'LogInOK');
+  }
+
+  isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
 
-  logOut(){
+  logOut() {
     localStorage.removeItem('token');
   }
 
