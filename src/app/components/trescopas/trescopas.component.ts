@@ -16,25 +16,10 @@ export class TrescopasComponent implements OnInit{
   provincias: IProvincia[] = []
   id_select: number = 1;
   indice: number = 0;
-<<<<<<< HEAD
   provinciaNueva: IProvincia = {};
   actual:IProvincia={};
 
   //*Variables para validar */
-=======
-
-  provinciaNueva: IProvincia = {};
-  actual: IProvincia = {};
-
-  //*Variables para validar provincia a actualizar */
-  errorNombreActual = 0;
-  errorCapitalActual = 0;
-  errorSInteresActual = 0;
-  //************************/
-
-
-  //*Variables para validar provincia nueva */
->>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
   errorNombre = 0;
   errorCapital = 0;
   errorSInteres = 0;
@@ -46,7 +31,6 @@ export class TrescopasComponent implements OnInit{
     console.log(this.provincias);
   }
 
-<<<<<<< HEAD
   //*******************************//
   ngOnInit(): void {
     this.provinciaService.listProvincias().subscribe(
@@ -66,18 +50,6 @@ export class TrescopasComponent implements OnInit{
     provinciaAAgregar.capital = this.provinciaNueva.capital;
     provinciaAAgregar.sInteres = this.provinciaNueva.sInteres;
     this.provinciaService.createProvincia(provinciaAAgregar);
-=======
-  ngOnInit(): void { }
-  //*******************************//
-
-  agregarProvincia(): void {
-    this.provinciaNueva.id = (this.provincias.length + 1);
-    console.log(this.provinciaNueva.id);
-    this.provincias.push(this.provinciaNueva);
-    this.provinciaService.guardarProvincias(this.provincias);
-    this.provinciaService.guardarProvinciasLocal();
-    console.log(this.provincias);
->>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
   }
 
   eliminar($event: any) {
@@ -92,7 +64,6 @@ export class TrescopasComponent implements OnInit{
   }
 
   actualizar() {
-<<<<<<< HEAD
     console.log("Elige: " + this.id_select);
     console.log(this.provincias);
     this.provinciaService.updateProvincia(this.id_select,this.actual).subscribe(
@@ -104,19 +75,6 @@ export class TrescopasComponent implements OnInit{
     );
   }
 
-=======
-    // console.log("Elige: " + this.id_select)
-    this.actual.id=this.indice;
-    // console.log(this.actual);
-    this.provincias[this.indice]= this.actual;
-    this.provinciaService.guardarProvincias(this.provincias);
-    // this.provinciaService.guardarProvinciasLocal();
-    this.provincias=this.provinciaService.listarProvincias();
-  }
-
-  //*******************************//
-
->>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
   seleccionaValor($event: any) {
     console.log("Elige: " + this.id_select)
     for (let i = 0; i < this.provincias.length; i++) {
@@ -177,57 +135,6 @@ export class TrescopasComponent implements OnInit{
 
   //************************/
 
-<<<<<<< HEAD
-=======
-  //*Métodos para validar provincia a actualizar*/
-  validarCamposActual(): Boolean {
-    console.log("Validando los campos del formulario!!!");
-    this.errorNombreActual = this.verificarNombreActual(this.actual.nombre);
-    this.errorCapitalActual = this.verificarCapitalActual(this.actual.capital);
-    this.errorSInteresActual = this.verificarSInteresActual(this.actual.sInteres);
-    if ((this.errorNombreActual + this.errorCapitalActual + this.errorSInteresActual) > 0) {
-      return false;
-    }
-    return true;
-  }
-
-  private verificarNombreActual(palabra: any): number {
-    const patron = /^[A-Z][A-z,a-z\s]+$/; //Primer caracter en mayuscular alternando luego
-    if (palabra === undefined)
-      return 1;
-    if (palabra.length > 20)
-      return 2;
-    if (!patron.test(palabra))
-      return 3;
-    return 0;
-  }
-
-  private verificarCapitalActual(palabra: any): number {
-    const patron: RegExp = /^[A-Z][A-z,a-z\s]+$/; //Primer caracter en mayuscular alternando luego
-    if (palabra === undefined)
-      return 1;
-    if (palabra.length > 20)
-      return 2;
-    if (!patron.test(palabra))
-      return 3;
-    return 0;
-  }
-
-  private verificarSInteresActual(palabra: any): number {
-    const patron: RegExp = /^[A-Z][A-z,a-z\s]+$/;
-    if (palabra === undefined)
-      return 1;
-    if (palabra.length > 20)
-      return 2;
-    if (!patron.test(palabra))
-      return 3;
-    return 0;
-  }
-
-  //************************/
-  //*Métodos para limpiar campos*/
-
->>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
   limpiarNombre() {
     if (this.errorNombre > 0) {
       console.log("Limpiar nombre");
@@ -250,16 +157,10 @@ export class TrescopasComponent implements OnInit{
       this.provinciaNueva.sInteres = "";
       this.errorSInteres = 0;
     }
-<<<<<<< HEAD
 
   }
 
   //************************/
 
 
-=======
-  }
-
-  //************************/
->>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
 }
