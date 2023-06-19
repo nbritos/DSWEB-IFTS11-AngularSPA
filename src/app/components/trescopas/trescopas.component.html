@@ -19,8 +19,11 @@
     <br>
     <br>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
     <form>
         <fieldset>
             <legend>Listado de provincias</legend>
@@ -49,6 +52,7 @@
                     </tbody>
                 </ng-template>
             </table>
+<<<<<<< HEAD
         </fieldset>
     </form>
 
@@ -71,8 +75,68 @@
             <input type="text" [(ngModel)]="provincias[indice].sInteres" name="provincias[indice].sInteres"
                 placeholder="sitio de interes">
             <button class="btn btn-success" (click)="validarCampos()">Actualizar</button>
+=======
+>>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
         </fieldset>
     </form>
+    <br>
+
+<<<<<<< HEAD
+    <form (submit)="agregarProvincia()" method="post">
+        <fieldset>
+            <div class="form-row">
+                <legend style="color:white">Agregar nueva provincia</legend>
+                <div class="col">
+                    <input type="text" [(ngModel)]="provinciaNueva.nombre" name="provinciaNueva.nombre"
+                        class="form-control mb-2" placeholder="Nombre" (focus)="limpiarNombre()">
+                </div>
+                <div class="col">
+                    <input type="text" [(ngModel)]="provinciaNueva.capital" name="provinciaNueva.capital"
+                        class="form-control mb-2" placeholder="Capital" (focus)="limpiarCapital()">
+                </div>
+                <div class="col">
+                    <input type="text" [(ngModel)]="provinciaNueva.sInteres" name="provinciaNueva.sInteres"
+                        class="form-control" placeholder="Sitios de interés" (focus)="limpiarSInteres()">
+                </div>
+                <button (click)="validarCampos()" class="btn btn-success">
+                    Agregar provincia</button>
+            </div>
+=======
+    <form (submit)="actualizar()" method="post">
+        <fieldset>
+            <div style="background-color: white">
+                <legend>Seleccione una provincia para modificar</legend>
+            </div>
+            <select class="form-control" required [(ngModel)]="id_select" name="id_select"
+                (change)="seleccionaValor($event)">
+                <option class="dropdown-item" disabled selected value="undefined">Seleccione ID</option>
+                <option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.id}}</option>
+            </select>
+            <input type="text" [(ngModel)]="actual.nombre" name="actual.nombre" placeholder="nombre de provincia">
+            <input type="text" [(ngModel)]="actual.capital" name="actual.capital" placeholder="capital">
+            <input type="text" [(ngModel)]="actual.sInteres" name="actual.sInteres" placeholder="sitio de interes">
+            <button (click)="validarCamposActual()" class="btn btn-success">Actualizar</button>
+        </fieldset>
+    </form>
+    <div>
+        <div [ngSwitch]="errorNombreActual" class="bg-secondary text-white">
+            <div *ngSwitchCase="1">Debes completar el campo nombre de provincia</div>
+            <div *ngSwitchCase="2">Nombre de provincia muy largo</div>
+            <div *ngSwitchCase="3">Nombre de provincia debe ser alfabético y empezar por mayúscula</div>
+        </div>
+
+        <div [ngSwitch]="errorCapitalActual" class="bg-secondary text-white">
+            <div *ngSwitchCase="1">Debes completar el campo capital</div>
+            <div *ngSwitchCase="2">Texto de capital muy largo</div>
+            <div *ngSwitchCase="3">Campo capital debe ser alfabético y empezar por mayúscula</div>
+        </div>
+
+        <div [ngSwitch]="errorSInteresActual" class="bg-secondary text-white">
+            <div *ngSwitchCase="1">Debes completar el campo sitio de interés</div>
+            <div *ngSwitchCase="2">Texto de sitio de interés muy largo</div>
+            <div *ngSwitchCase="3">Campo sitio de interés debe ser alfabético y empezar por mayúscula</div>
+        </div>
+    </div>
 
     <br>
     <br>
@@ -96,6 +160,7 @@
                 <button (click)="validarCampos()" class="btn btn-success">
                     Agregar provincia</button>
             </div>
+>>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
         </fieldset>
     </form>
 
@@ -138,7 +203,13 @@
 
 
 
+<<<<<<< HEAD
 
 
 
         <router-outlet></router-outlet>
+=======
+        <router-outlet></router-outlet>
+    </div>
+</body>
+>>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
