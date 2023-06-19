@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ProvinciaService } from './services/provincia.service';
 import { SmbComponent } from './components/smb/smb.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,12 +19,13 @@ import { SmbComponent } from './components/smb/smb.component';
     TrescopasComponent,
     HomeComponent,
     NavigationComponent,
-    SmbComponent,
+    SmbComponent
       ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [ProvinciaService, AuthGuard],
   bootstrap: [AppComponent]

@@ -1,86 +1,85 @@
 import { Injectable } from '@angular/core';
 import { IProvincia } from '../models/provinciaModel';
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProvinciaService {
 
-  constructor() { }
+  API_URI = 'http://localhost:3000/province';
+  provincias: IProvincia[] = [];
 
-
-  public provincia:IProvincia={
-    nombre:'',
-    capital:'',
-    sInteres:''
+  constructor(private http: HttpClient) {
+    // this.provincias = [{
+    //   "id": 1,
+    //   "nombre": "BuenosAires",
+    //   "capital": "La Plata",
+    //   "sInteres": "V Museo interactivo de la plata con imagenes holograficas de los jugadores."
+    // }, {
+    //   "id": 2,
+    //   "nombre": "Chaco",
+    //   "capital": "Resistencia",
+    //   "sInteres": " Predio internacional Herederos del mate, donde se puede realizar torneos con las camisetas de los equipos del mundial. "
+    // }, {
+    //   "id": 3,
+    //   "nombre": "Formosa",
+    //   "capital": "Formosa",
+    //   "sInteres": "Dulce de caña"
+    // }, {
+    //   "id": 4,
+    //   "nombre": "Chubut",
+    //   "capital": "Rawson",
+    //   "sInteres": "Pingüinos"
+    // }, {
+    //   "id": 5,
+    //   "nombre": "Entre Ríos",
+    //   "capital": "Paraná",
+    //   "sInteres": "Fito Páez"
+    // }, {
+    //   "id": 6,
+    //   "nombre": "Misiones",
+    //   "capital": "Posadas",
+    //   "sInteres": "Cataratas del Iguazú"
+    // }, {
+    //   "id": 7,
+    //   "nombre": "La Pampa",
+    //   "capital": "Santa Rosa",
+    //   "sInteres": "Vaquitas"
+    // }, {
+    //   "id": 8,
+    //   "nombre": "Salta",
+    //   "capital": "Salta",
+    //   "sInteres": "Plaza 9 de Julio, Iglesa de San Francisco, Virgen de los tres cerritos"
+    // }, {
+    //   "id": 9,
+    //   "nombre": "San Luis",
+    //   "capital": "San Luis",
+    //   "sInteres": "Sierras de Merlo"
+    // }, {
+    //   "id": 10,
+    //   "nombre": "Jujuy",
+    //   "capital": "San Salvador de Jujuy",
+    //   "sInteres": "Pucará de Tilcara"
+    // }
+    // ]
   }
 
-  provincias: IProvincia[] = [{
-    "nombre": "BuenosAires",
-    "capital": "La Plata",
-    "sInteres": "V Museo interactivo de la plata con imagenes holograficas de los jugadores."
-  }, {
-    "nombre": "Chaco",
-    "capital": "Resistencia",
-    "sInteres": " Predio internacional Herederos del mate, donde se puede realizar torneos con las camisetas de los equipos del mundial. "
-  }, {
-    "nombre": "Formosa",
-    "capital": "Formosa",
-    "sInteres": "Dulce de caña"
-  }, {
-    "nombre": "Chubut",
-    "capital": "Rawson",
-    "sInteres": "Pingüinos"
-  }, {
-    "nombre": "Entre Ríos",
-    "capital": "Paraná",
-    "sInteres": "Fito Páez"
-  }, {
-    "nombre": "Misiones",
-    "capital": "Posadas",
-    "sInteres": "Cataratas del Iguazú"
-  }, {
-    "nombre": "La Pampa",
-    "capital": "Santa Rosa",
-    "sInteres": "Vaquitas"
-  }, {
-    "nombre": "Salta",
-    "capital": "Salta",
-    "sInteres": "Plaza 9 de Julio, Iglesa de San Francisco, Virgen de los tres cerritos"
-  }, {
-    "nombre": "San Luis",
-    "capital": "San Luis",
-    "sInteres": "Sierras de Merlo"
-  }, {
-    "nombre": "Jujuy",
-    "capital": "San Salvador de Jujuy",
-    "sInteres": "Pucará de Tilcara"
-  }
-  ]
-
-  eliminarUltimaProvincia(): void {
-    this.provincias.pop();
+  listProvincias() {
+    return this.http.get(`${this.API_URI}/`);
   }
 
-
-  agregarProvincia(provincia:IProvincia): void {
-    this.provincias.push(provincia);
+  createProvincia(provinciasCreate: IProvincia) {
+    return this.http.post(`${this.API_URI}/`, provinciasCreate)
   }
 
-  listarProvincias(){
-    return this.provincias;
+  updateProvincia(id: number, actualizaProvincia: IProvincia) {
+    return this.http.put(`${this.API_URI}/${id}`, actualizaProvincia);
   }
 
-  setToken(){
-    localStorage.setItem('token','LogInOK');
-  }
-
-  isLoggedIn():boolean{
-    return !!localStorage.getItem('token');
-  }
-
-  logOut(){
-    localStorage.removeItem('token');
+  deleteProvincia(id: number) {
+    return this.http.delete(`${this.API_URI}/${id}`)
   }
 
 }

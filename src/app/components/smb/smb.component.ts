@@ -9,6 +9,6 @@ import { ProvinciaService } from 'src/app/services/provincia.service';
 export class SmbComponent {
 
   constructor(private provinciaService:ProvinciaService){
-    this.provinciaService.setToken();
+    // this.provinciaService.setToken();
   }
 }

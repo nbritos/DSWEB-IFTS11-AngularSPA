@@ -21,9 +21,9 @@
 
 
 
-    <form (submit)="eliminarUltimaProvincia()" method="post">
+    <form>
         <fieldset>
-            <legend>Sitios de interés</legend>
+            <legend>Listado de provincias</legend>
             <table border="2">
                 <thead>
                     <th>ID</th>
@@ -31,12 +31,14 @@
                     <th>Capital</th>
                     <th>Sitios de interés</th>
                 </thead>
-                <tbody *ngIf="provincias.length>0;else fila">
-                    <tr *ngFor=" let provincia of provincias;index as i">
-                        <td>{{i}}</td>
+                <tbody *ngIf="provincias.length > 0;else fila">
+                    <tr *ngFor=" let provincia of provincias">
+                        <td>{{provincia.id}}</td>
                         <td>{{provincia.nombre}}</td>
                         <td>{{provincia.capital}}</td>
                         <td>{{provincia.sInteres}}</td>
+                        <button class="btn btn-danger" (click)=eliminar($event)
+                            value="{{provincia.id}}">Eliminar</button>
                     </tr>
                 </tbody>
                 <ng-template #fila>
@@ -47,48 +49,96 @@
                     </tbody>
                 </ng-template>
             </table>
-            <button class="btn btn-danger">Borrar
-                provincia</button>
+        </fieldset>
+    </form>
+
+    <br>
+
+    <form (submit)="actualizar()" method="post">
+        <fieldset>
+            <div style="background-color: white">
+                <legend>Seleccione una provincia para modificar</legend>
+            </div>
+            <select class="form-control" required [(ngModel)]="id_select" name="id_select"
+                (change)="seleccionaValor($event)">
+                <option class="dropdown-item" disabled selected value="undefined">Seleccione ID</option>
+                <option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.id}}</option>
+            </select>
+            <input type="text" [(ngModel)]="provincias[indice].nombre" name="nombre"
+                placeholder="nombre de provincia">
+            <input type="text" [(ngModel)]="provincias[indice].capital" name="provincias[indice].capital"
+                placeholder="capital">
+            <input type="text" [(ngModel)]="provincias[indice].sInteres" name="provincias[indice].sInteres"
+                placeholder="sitio de interes">
+            <button class="btn btn-success" (click)="validarCampos()">Actualizar</button>
         </fieldset>
     </form>
 
     <br>
     <br>
 
-    <form (ngSubmit)="agregarProvincia()" type="post">
-        <div class="form-row">
-            <div class="col">
-                <input type="text" [(ngModel)]="provinciaNueva.nombre" name="nombre" class="form-control mb-2"
-                    placeholder="Nombre">
+    <form (submit)="agregarProvincia()" method="post">
+        <fieldset>
+            <div class="form-row">
+                <legend style="color:white">Agregar nueva provincia</legend>
+                <div class="col">
+                    <input type="text" [(ngModel)]="provinciaNueva.nombre" name="provinciaNueva.nombre"
+                        class="form-control mb-2" placeholder="Nombre" (focus)="limpiarNombre()">
+                </div>
+                <div class="col">
+                    <input type="text" [(ngModel)]="provinciaNueva.capital" name="provinciaNueva.capital"
+                        class="form-control mb-2" placeholder="Capital" (focus)="limpiarCapital()">
+                </div>
+                <div class="col">
+                    <input type="text" [(ngModel)]="provinciaNueva.sInteres" name="provinciaNueva.sInteres"
+                        class="form-control" placeholder="Sitios de interés" (focus)="limpiarSInteres()">
+                </div>
+                <button (click)="validarCampos()" class="btn btn-success">
+                    Agregar provincia</button>
             </div>
-            <div class="col">
-                <input type="text" [(ngModel)]="provinciaNueva.capital" name="capital" class="form-control mb-2"
-                    placeholder="Capital">
-            </div>
-            <div class="col">
-                <input type="text" [(ngModel)]="provinciaNueva.sInteres" name="sInteres" class="form-control"
-                    name="sInteres" placeholder="Sitios de interés">
-            </div>
-            <button class="btn btn-success">
-                Agregar provincia</button>
-        </div>
+        </fieldset>
     </form>
 
     <div class="provinciaJson">
         {{provinciaNueva | json}}
     </div>
 
-    <br>
-    <br>
+    <div>
+        <div [ngSwitch]="errorNombre" class="bg-secondary text-white">
+            <div *ngSwitchCase="1">Debes completar el campo nombre de provincia</div>
+            <div *ngSwitchCase="2">Nombre de provincia muy largo</div>
+            <div *ngSwitchCase="3">Nombre de provincia debe ser alfabético y empezar por mayúscula</div>
+        </div>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/mgcmuFk6XlY" title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-    </iframe>
+        <div [ngSwitch]="errorCapital" class="bg-secondary text-white">
+            <div *ngSwitchCase="1">Debes completar el campo capital</div>
+            <div *ngSwitchCase="2">Texto de capital muy largo</div>
+            <div *ngSwitchCase="3">Campo capital debe ser alfabético y empezar por mayúscula</div>
+        </div>
 
-</body>
+        <div [ngSwitch]="errorSInteres" class="bg-secondary text-white">
+            <div *ngSwitchCase="1">Debes completar el campo sitio de interés</div>
+            <div *ngSwitchCase="2">Texto de sitio de interés muy largo</div>
+            <div *ngSwitchCase="3">Campo sitio de interés debe ser alfabético y empezar por mayúscula</div>
+        </div>
+
+        <br>
+        <br>
 
 
 
-<router-outlet></router-outlet>
+
+
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/mgcmuFk6XlY" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+
+
+
+
+
+
+        <router-outlet></router-outlet>

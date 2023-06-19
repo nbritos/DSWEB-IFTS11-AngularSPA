@@ -4,25 +4,30 @@ import { TrescopasComponent } from './components/trescopas/trescopas.component';
 import { SmbComponent } from './components/smb/smb.component';
 
 import { AuthGuard } from './auth.guard';
+import { HomeComponent } from './components/home/home.component';
+// import { UsuarioIngresarComponent } from './components/usuario-ingresar/usuario-ingresar.component';
 
 const routes: Routes = [
   {
-    path: 'argentina/trescopas',
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'home'
+  // },
+  {
+    path: 'trescopas',
     component: TrescopasComponent,
-    canActivate:[AuthGuard]
-  }, 
+    canActivate: [AuthGuard]
+  },
   {
     path: 'smb',
     component: SmbComponent
-  },
-  {
-		path: '**',
-		redirectTo:'/smb'
-	},
-  {
-    path:'',
-    redirectTo:'/smb',
-    pathMatch:'full'
   }
 ];
 
