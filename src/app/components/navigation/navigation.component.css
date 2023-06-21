@@ -1,3 +1,39 @@
-#logout{
+.navbar {
+    background-color: #f8f9fa;
+    /* Color de fondo */
+    padding: 10px;
+    /* Espaciado interno */
+    background: linear-gradient(to right, rgb(66, 26, 26), rgb(4, 4, 82));
+}
+
+.navbar-brand {
+    font-weight: bold;
+    /* Texto en negrita */
+    color: #d8d8d8;
+    /* Color del texto */
+}
+
+.navbar-nav {
+    margin-left: auto;
+    /* Alinear a la derecha */
+}
+
+.nav-link {
+    color: #333;
+    /* Color del texto */
+    padding: 8px 15px;
+    /* Espaciado interno */
+    transition: color 0.3s ease;
+    /* Transición suave del color */
+}
+
+.nav-link:hover {
+    color: #007bff;
+    /* Cambio de color al pasar el cursor */
+}
+
+#logout {
     cursor: pointer;
+    color: red;
+    /* Color del enlace de cerrar sesión */
 }

@@ -59,6 +59,10 @@ export class UsuariosService {
     localStorage.setItem('token', 'LogInOK');
   }
 
+  getToken() {//Obtenemos el token que despues enviara el interceptor x cada req
+    return localStorage.getItem('token');
+  }
+
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token'); //Si existe token retorna true
     //es el equivalente de testearlo con if pero ahora en una sola linea.

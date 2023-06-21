@@ -1,26 +1,15 @@
 <body>
-    <h1 class="titulo">{{titulo}} <img
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20210704%2Foriginal%2Fpngtree-3-golden-3d-realistic-stars-png-image_6506672.jpg&f=1&nofb=1&ipt=b4565b30fe86f7c68f3ccf8d14b6ecc6fc3de5351e4cb5b803320113665253ad&ipo=images"
-            alt="Texto_descriptivo" align="center" width="100" height="100" border="1"> </h1>
-    <BR>
-
-
-    <dt><strong><u>Copa del mundo en 3D </u></strong></dt>
-    <p>Descarga la copa del fin del mundo en formato "STL" <a
-            href="https://cults3d.com/en/3d-model/art/fifa-world-cup-in-parts-copa-del-mundo-fifa-en-partes"
-            target="_blank" rel="noopener noreferrer">freeCodeCamp</a>.</p>
-
-    <dt><strong><u>Fixture completo</u></strong></dt><BR>
-
-    <a
-        href="javascript:window.open('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.blpmCvM1Jya2nkARUMoR1QHaFj%26pid%3DApi&f=1&ipt=d58f9e4a0b242890e6851500fb9a390b02608701ac10758a5189bbe0476a6d2b&ipo=images','','toolbar=yes');void 0">Descargar
-        Fixture completo</a>
-
-    <br>
+    <h1 class="titulo">{{titulo}} </h1>
     <br>
 
-
-
+    <div class="subparraf">
+        <p>Accede a la wiki de Argentina en el siguiente <a href="https://es.wikipedia.org/wiki/Argentina"
+                target="_blank" rel="noopener noreferrer">link</a>
+        </p>
+        <BR>
+        <a href="https://recetasdeargentina.com.ar/">Recetas locales</a>
+    </div>
+    <br>
     <form>
         <fieldset>
             <legend>Listado de provincias</legend>
@@ -29,14 +18,14 @@
                     <th>ID</th>
                     <th>Provincia</th>
                     <th>Capital</th>
-                    <th>Sitios de interés</th>
+                    <th>Descripción</th>
                 </thead>
                 <tbody *ngIf="provincias.length > 0;else fila">
                     <tr *ngFor=" let provincia of provincias">
                         <td>{{provincia.id}}</td>
                         <td>{{provincia.nombre}}</td>
                         <td>{{provincia.capital}}</td>
-                        <td>{{provincia.sInteres}}</td>
+                        <td>{{provincia.descripcion}}</td>
                         <button class="btn btn-danger" (click)=eliminar($event)
                             value="{{provincia.id}}">Eliminar</button>
                     </tr>
@@ -51,26 +40,40 @@
             </table>
         </fieldset>
     </form>
-
     <br>
-
     <form (submit)="actualizar()" method="post">
-        <fieldset>
-            <div style="background-color: white">
-                <legend>Seleccione una provincia para modificar</legend>
-            </div>
+
+        <fieldset class=" my-3 px-4">
+            <!-- INICIO ACTUALIZAR PROVINCIAS-->
+            <legend>Seleccione <b> ID PROVINCIA </b> para <b> ACTUALIZAR </b></legend>
+
             <select class="form-control" required [(ngModel)]="id_select" name="id_select"
                 (change)="seleccionaValor($event)">
-                <option class="dropdown-item" disabled selected value="undefined">Seleccione ID</option>
-                <option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.id}}</option>
+                <!--Esta opcion queda fija por opcion disabled-->
+
+                <option class="dropdown-item" disabled selected value="undefined">Seleccione ID PROVINCIA</option>
+
+                <option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.id}} </option>
             </select>
-            <input type="text" [(ngModel)]="provincias[indice].nombre" name="nombre"
-                placeholder="nombre de provincia">
-            <input type="text" [(ngModel)]="provincias[indice].capital" name="provincias[indice].capital"
-                placeholder="capital">
-            <input type="text" [(ngModel)]="provincias[indice].sInteres" name="provincias[indice].sInteres"
-                placeholder="sitio de interes">
-            <button class="btn btn-success" (click)="validarCampos()">Actualizar</button>
+            <br> <br>
+
+            <b> <label for="exampleFormControlInput1">Nombre de la Provincia: </label></b> <br>
+
+            <input type="text" (focus)="limpiarNombreActualizar()" [(ngModel)]="actual.nombre" name="actual.nombre"
+                placeholder="Nombre Provincia"> <br> <br>
+
+            <b> <label for="exampleFormControlInput1">Capital de la Provincia: </label></b> <br>
+            <input type="text" (focus)="limpiarCapitalActualizar()" [(ngModel)]="actual.capital" name="actual.capital"
+                placeholder="Capital"> <br> <br>
+
+
+            <b> <label for="exampleFormControlInput1">Descripción de la Provincia: </label></b> <br>
+            <textarea name="" id="" cols="40" rows="10" (focus)="limpiarDescripcionActualizar()"
+                [(ngModel)]="actual.descripcion" name="actual.descripcion" placeholder="Descripción"></textarea> <br>
+
+            <button (click)="validarCamposActualizar()"
+                class="btn btn-success btn-lg custom-btn btn-block">Actualizar</button>
+
         </fieldset>
     </form>
     <br>
@@ -88,11 +91,10 @@
                         class="form-control mb-2" placeholder="Capital" (focus)="limpiarCapital()">
                 </div>
                 <div class="col">
-                    <input type="text" [(ngModel)]="provinciaNueva.sInteres" name="provinciaNueva.sInteres"
-                        class="form-control" placeholder="Sitios de interés" (focus)="limpiarSInteres()">
+                    <input type="text" [(ngModel)]="provinciaNueva.descripcion" name="provinciaNueva.descripcion"
+                        class="form-control" placeholder="descripcion" (focus)="limpiarDescripcion()">
                 </div>
-                <button (click)="validarCampos()" class="btn btn-success">
-                    Agregar provincia</button>
+                <button class="btn btn-success" (click)="validarCampos()">Agregar provincia</button>
             </div>
         </fieldset>
     </form>
@@ -101,7 +103,7 @@
         {{provinciaNueva | json}}
     </div>
 
-    <div>
+    <div class="errores">
         <div [ngSwitch]="errorNombre" class="bg-secondary text-white">
             <div *ngSwitchCase="1">Debes completar el campo nombre de provincia</div>
             <div *ngSwitchCase="2">Nombre de provincia muy largo</div>
@@ -114,35 +116,23 @@
             <div *ngSwitchCase="3">Campo capital debe ser alfabético y empezar por mayúscula</div>
         </div>
 
-        <div [ngSwitch]="errorSInteres" class="bg-secondary text-white">
-            <div *ngSwitchCase="1">Debes completar el campo sitio de interés</div>
-            <div *ngSwitchCase="2">Texto de sitio de interés muy largo</div>
-            <div *ngSwitchCase="3">Campo sitio de interés debe ser alfabético y empezar por mayúscula</div>
+        <div [ngSwitch]="errorDescripcion" class="bg-secondary text-white">
+            <div *ngSwitchCase="1">Debes completar el campo sitio de descripcion</div>
+            <div *ngSwitchCase="2">Texto de descripcion muy largo</div>
+            <div *ngSwitchCase="3">Campo descripcion debe ser alfabético y empezar por mayúscula</div>
         </div>
 
         <br>
         <br>
-
-
-
-
-
-
+    </div>
+    <div class="video">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/mgcmuFk6XlY" title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
         </iframe>
-
-
-
-<<<<<<< HEAD
-
-
-
-        <router-outlet></router-outlet>
-=======
-        <router-outlet></router-outlet>
     </div>
+
+
 </body>
->>>>>>> 96b6670960c117b684dcd3287460ead8abf29897
+<router-outlet></router-outlet>
