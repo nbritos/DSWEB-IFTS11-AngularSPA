@@ -45,7 +45,6 @@ export class TrescopasComponent implements OnInit {
       (res: any) => {
         console.log(res)
         this.provincias = (res);
-
         console.log(this.provincias);
       }
     );
@@ -59,6 +58,7 @@ export class TrescopasComponent implements OnInit {
     provinciaAAgregar.descripcion = this.provinciaNueva.descripcion;
     console.log(provinciaAAgregar);
     this.provinciaService.createProvincia(provinciaAAgregar);
+    this.ngOnInit();
   }
 
   //DELETE

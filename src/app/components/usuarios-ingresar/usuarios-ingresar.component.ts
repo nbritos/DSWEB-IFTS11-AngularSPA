@@ -38,7 +38,8 @@ export class UsuariosIngresarComponent implements OnInit {
           console.log("Login exitoso");
           //this.usuariosService.setToken();
           this.usuariosService.setToken(res.token);
-          this.router.navigate(['usuarios/home']);
+          console.log(res.token);
+          this.router.navigate(['home']);
         }
       }
     );
@@ -56,7 +57,7 @@ export class UsuariosIngresarComponent implements OnInit {
 
   ingresar() {
     console.log("Iniciando sesion");
-    //this.usuariosService.setToken();
+    // this.usuariosService.setToken();
     this.router.navigate(['usuarios/home']);
   }
 
