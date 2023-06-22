@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IProvincia } from '../models/provinciaModel';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { UsuariosService } from './usuarios.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,18 @@ export class ProvinciaService {
   API_URI = 'http://localhost:3000/province';
   provincias: IProvincia[] = [];
 
+
   constructor(private http: HttpClient) {
   }
 
+
   listProvincias() {
-    return this.http.get(`${this.API_URI}/`);
+    //la const y prop headers no van. Estan de prueba hasta resolver verify token.
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer <$"token">'
+    });
+    
+    return this.http.get(`${this.API_URI}/`,{headers});
   }
 
   createProvincia(provinciasCreate: IProvincia) {
