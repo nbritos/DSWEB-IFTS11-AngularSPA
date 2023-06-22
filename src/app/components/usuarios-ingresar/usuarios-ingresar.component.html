@@ -1,0 +1,11 @@
+<form (submit)="ingresar()" method="post" *ngIf="!revelar">
+    <fieldset>
+        <legend>Ingrese usuario y contraseña</legend>
+        <input (focus)="limpiarUsuario()" type="text" [(ngModel)]="nuevo.nombre" name="nuevo.nombre" placeholder="Usuario">
+        <input (focus)="limpiarPassword()" type="password" [(ngModel)]="nuevo.password" name="nuevo.password" placeholder="Contraseña">
+        <button (click)="validarCampos()" class="btn btn-success">Enviar</button>
+    </fieldset>
+</form>
+<div *ngIf="revelar">
+    Usuario y/o contraseña incorrectos <button (click)="reintentar()" class="btn btn-success">Reintentar</button>
+</div>

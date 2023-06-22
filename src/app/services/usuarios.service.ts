@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuarioModel';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class UsuariosService {
   API_URI = 'http://localhost:3000/user';
   usuarios: Usuario[];
 
-  constructor(/*private http: HttpClient*/) { 
+  constructor(private http: HttpClient) { 
     this.usuarios = [{
       "id": "1",
       "nombre": "Pedro",
@@ -50,13 +51,16 @@ export class UsuariosService {
     //Las variables salen pintadas de otro color diferente del de texto
     //return this.http.get(`${this.API_URI}/list`);
     //si no funciona usar 
-    //return this.http.get(this.API_URI+'/list');
-    return this.usuarios;
+    return this.http.get(this.API_URI+'/list');
+    // return this.usuarios;
   }
 
-  setToken() {
-    //localStorage.setItem('token',result.token);
-    localStorage.setItem('token', 'LogInOK');
+  loginUsuario(usuario:Usuario){
+    return this.http.post(`${this.API_URI}/login/`,usuario);
+  }
+
+  setToken(token:string){
+    localStorage.setItem('token',token);
   }
 
   getToken() {//Obtenemos el token que despues enviara el interceptor x cada req
@@ -72,18 +76,18 @@ export class UsuariosService {
     localStorage.removeItem('token');
   }
 
-  userExists(nombre: string, password: string): boolean {
+  // userExists(nombre: string, password: string): boolean {
 
-    for (let i = 0; i < this.usuarios.length; i++) {
-      if (nombre == this.usuarios[i].nombre && password == this.usuarios[i].password) {
-        localStorage.setItem("Rol", JSON.stringify(this.usuarios[i].rol));
-        if(this.usuarios[i].rol=='admin'){
-          this.adminStorage=true;
-        }
-        return true;
-      }
-    } return false;
-  }
+  //   for (let i = 0; i < this.usuarios.length; i++) {
+  //     if (nombre == this.usuarios[i].nombre && password == this.usuarios[i].password) {
+  //       localStorage.setItem("Rol", JSON.stringify(this.usuarios[i].rol));
+  //       if(this.usuarios[i].rol=='admin'){
+  //         this.adminStorage=true;
+  //       }
+  //       return true;
+  //     }
+  //   } return false;
+  // }
 
 }
 

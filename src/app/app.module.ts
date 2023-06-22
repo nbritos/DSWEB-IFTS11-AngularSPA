@@ -11,6 +11,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { ProvinciaService } from './services/provincia.service';
 import { SmbComponent } from './components/smb/smb.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UsuariosIngresarComponent } from './components/usuarios-ingresar/usuarios-ingresar.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     TrescopasComponent,
     HomeComponent,
     NavigationComponent,
-    SmbComponent
+    SmbComponent,
+    UsuariosIngresarComponent
       ],
   imports: [
     BrowserModule,

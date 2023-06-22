@@ -5,6 +5,7 @@ import { SmbComponent } from './components/smb/smb.component';
 
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './components/home/home.component';
+import { UsuariosIngresarComponent } from './components/usuarios-ingresar/usuarios-ingresar.component';
 // import { UsuarioIngresarComponent } from './components/usuario-ingresar/usuario-ingresar.component';
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'smb',
     component: SmbComponent
+  },
+  {
+    path: 'usuarios/ingresar',
+    component: UsuariosIngresarComponent
   }
 ];
 

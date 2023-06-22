@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProvinciaService } from 'src/app/services/provincia.service';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -8,21 +8,15 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
 
   constructor(private usuarioService: UsuariosService, private router: Router) {
-    this.usuarioService.setToken();
+    // this.usuarioService.setToken;
     // this.usuarioService.isLoggedIn();
   }
 
-
   accesoProvincias(): boolean {
     return this.usuarioService.isLoggedIn();
-  }
-
-  smbAyuda(): void {
-    console.log('smb');
-    this.usuarioService.setToken();
   }
 
   logOut() {
@@ -31,4 +25,7 @@ export class NavigationComponent {
     this.router.navigate(['home']);
   }
 
+  ngOnInit(): void {
+    
+  }
 }
